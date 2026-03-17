@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Blueprint, request, redirect, url_for, session
+from flask import Flask, render_template, Blueprint, request, redirect, url_for, session, flash
 from forms import ClienteForm 
 from models import db, Clientes, Pedidos, Pizzas, DetallePedido
 import datetime
@@ -98,8 +98,14 @@ def index():
                 pedido.total = total
                 db.session.commit()
                 
+                nombre_cliente = cliente_data.get("nombre")
+
+                total_pizzas = sum(int(item['cantidad']) for item in carrito)
+
                 session.clear()
-                
+
+                flash(f"{nombre_cliente} compro {total_pizzas} pizza(s)", "success")
+
                 return redirect(url_for('ventas.index'))
                 
             except Exception as e:
@@ -154,6 +160,7 @@ def agregar_pizza():
         carrito.append(pizza)
         session["carrito"] = carrito
 
+        flash("Pizza agregada al pedido", "success")    
         return redirect(url_for("ventas.index"))
 
     return render_template("ventas/pizza.html")

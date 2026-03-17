@@ -31,7 +31,6 @@ Ventas del Día - {{ fecha_actual }}
 
     {% set total_general = 0 %}
 
-    <!-- Card tabla -->
     <div class="relative overflow-x-auto bg-white shadow-md rounded-lg border border-gray-200">
 
         <div class="px-6 py-4 border-b bg-gray-100">
@@ -86,7 +85,6 @@ Ventas del Día - {{ fecha_actual }}
 
                 {% endfor %}
 
-                <!-- Fila de totales -->
                 <tr class="bg-gray-100 font-semibold text-gray-800">
                     <td colspan="4" class="px-6 py-4 text-right">
                         Total del Día
@@ -103,7 +101,6 @@ Ventas del Día - {{ fecha_actual }}
 
     {% else %}
 
-    <!-- Card sin ventas -->
     <div class="bg-white shadow-md rounded-lg border border-gray-200 p-12 text-center">
 
         <svg class="mx-auto h-16 w-16 text-gray-400" viewBox="0 0 24 24" fill="none">

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Pizzería Dashboard{% endblock %}</title>
 
-    <!-- Tailwind CDN (solo CSS, sin JavaScript) -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -14,19 +13,17 @@
     <nav class="bg-green-700 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo y título con efecto hover -->
                 <div class="flex items-center space-x-2">
                     <h1 class="font-bold text-3xl tracking-tight hover:text-green-200 transition-colors duration-200">
                         Pizzas al Chile
                     </h1>
                 </div>
 
-                <!-- Enlaces de navegación mejorados -->
                 <div class="flex space-x-2">
                     <a href="{{ url_for('index') }}" 
                        class="px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-800 hover:shadow-md transition-all duration-200 flex items-center space-x-1">
                         <svg width="30px" height="30px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0L0 6V8H1V15H4V10H7V15H15V8H16V6L14 4.5V1H11V2.25L8 0ZM9 10H12V13H9V10Z" fill="#ffffff"></path> </g></svg>
-                        <span>Dashboard</span>
+                        <span>Inicio</span>
                     </a>
 
                     <a href="{{ url_for('ventas.index') }}" 
@@ -72,7 +69,6 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="bg-white rounded-xl shadow-md p-6">
             {% block content %}
-            <!-- El contenido se renderizará aquí -->
             {% endblock %}
         </div>
     </main>

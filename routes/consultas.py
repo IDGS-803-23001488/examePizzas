@@ -18,7 +18,6 @@ def index():
     now = datetime.datetime.now()
     fecha_actual = now.date()
 
-    # Obtener pedidos del día
     pedidos_dia = db.session.query(Pedidos).filter(
         func.date(Pedidos.fecha) == fecha_actual
     ).all()
@@ -87,14 +86,12 @@ def index():
         estadisticas=estadisticas
     )
 
-
 @consultas.route("/historico", methods=['GET'])
 def historico():
 
-    tipo = request.args.get("tipo")
-    valor = request.args.get("valor")
+    dia = request.args.get("dia")
+    mes = request.args.get("mes")
 
-    # MySQL DAYOFWEEK: domingo=1 ... sábado=7
     dias_semana = {
         "domingo":1,
         "lunes":2,
@@ -122,14 +119,14 @@ def historico():
 
     query = db.session.query(Pedidos)
 
-    if tipo == "dia":
-        numero_dia = dias_semana.get(valor.lower())
+    if dia:
+        numero_dia = dias_semana.get(dia.lower())
         query = query.filter(
             func.dayofweek(Pedidos.fecha) == numero_dia
         )
 
-    elif tipo == "mes":
-        numero_mes = meses.get(valor.lower())
+    if mes:
+        numero_mes = meses.get(mes.lower())
         query = query.filter(
             func.month(Pedidos.fecha) == numero_mes
         )
@@ -142,13 +139,19 @@ def historico():
     resultados = []
 
     for pedido in pedidos:
+
         cliente = Clientes.query.get(pedido.id_cliente)
+
         detalles = DetallePedido.query.filter_by(
             id_pedido=pedido.id_pedido
         ).all()
+
         pizzas_detalle = []
+
         for detalle in detalles:
+
             pizza = Pizzas.query.get(detalle.id_pizza)
+
             pizzas_detalle.append({
                 "tamano": pizza.tamano,
                 "ingredientes": pizza.ingredientes,
@@ -156,6 +159,7 @@ def historico():
                 "precio_unitario": pizza.precio,
                 "subtotal": detalle.subtotal
             })
+
         resultados.append({
             "id_pedido": pedido.id_pedido,
             "cliente": cliente.nombre if cliente else "Cliente no encontrado",
@@ -164,14 +168,16 @@ def historico():
             "pizzas": pizzas_detalle
         })
 
+    filtro = f"Día: {dia or 'Todos'} | Mes: {mes or 'Todos'}"
+
     return render_template(
         "consultas/ventas_historico.html",
         resultados=resultados,
         total_ventas=total_ventas,
         total_pedidos=total_pedidos,
-        filtro=f"{tipo} {valor}",
-        tipo=tipo,
-        valor=valor
+        filtro=filtro,
+        dia=dia,
+        mes=mes
     )
 
 

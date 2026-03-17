@@ -8,7 +8,6 @@ Agregar Pizza
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     
-    <!-- Header con estilo mejorado -->
     <div class="mb-8">
         <h2 class="text-3xl font-bold text-gray-900 relative inline-block">
             Agregar Pizza
@@ -26,10 +25,7 @@ Agregar Pizza
     <form method="POST" class="space-y-6">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
-        <!-- Grid responsivo mejorado -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            <!-- Tarjeta: Tamaño de Pizza -->
             <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
                 <div class="bg-gradient-to-r from-green-600 to-green-500 px-4 py-3">
                     <h3 class="font-semibold text-white flex items-center gap-2">
@@ -63,7 +59,6 @@ Agregar Pizza
                 </div>
             </div>
 
-            <!-- Tarjeta: Ingredientes -->
             <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
                 <div class="bg-gradient-to-r from-green-600 to-green-500 px-4 py-3">
                     <h3 class="font-semibold text-white flex items-center gap-2">
@@ -97,7 +92,6 @@ Agregar Pizza
                 </div>
             </div>
 
-            <!-- Tarjeta: Cantidad y Botón -->
             <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
                 <div class="bg-gradient-to-r from-green-600 to-green-500 px-4 py-3">
                     <h3 class="font-semibold text-white flex items-center gap-2">
