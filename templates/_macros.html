@@ -1,0 +1,27 @@
+{% macro input_icon(field, placeholder='', type='text', icon='') %}
+
+<label for="{{ field.id }}" class="block mb-2.5 text-sm font-medium text-heading">
+    {{ field.label.text }}
+</label>
+
+<div class="flex shadow-xs rounded-base">
+    
+    <span class="inline-flex items-center px-3 text-sm text-body bg-neutral-tertiary border rounded-e-0 border-default-medium border-e-0 rounded-s-base">
+        {{ icon|safe }}
+    </span>
+
+    {{ field(
+        type=type,
+        placeholder=placeholder,
+        class="rounded-none rounded-e-base block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm focus:ring-brand focus:border-brand placeholder:text-body"
+    ) }}
+
+</div>
+
+{% if field.errors %}
+    <p class="text-red-500 text-sm mt-1">
+        {{ field.errors[0] }}
+    </p>
+{% endif %}
+
+{% endmacro %}

@@ -1,0 +1,178 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+{% from "_macros.html" import input_icon %}
+
+    <form method="POST" id="mainForm">
+        <div class="flex justify-end mb-6">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <button 
+                type="submit"
+                name="accion"
+                value="agregar_pizza"
+                class="bg-blue-500 text-white px-4 py-2 rounded px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-800 hover:shadow-md transition-all duration-200 flex items-center space-x-1">
+                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                <span>Agregar Pizza</span>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div>
+                {{ input_icon(
+                    client_form.nombre,
+                    "Nombre del cliente",
+                    icon='<svg width="24px" height="24px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="#000000"></path> <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="#000000"></path> </g></svg>'
+                ) }}
+            </div>
+            <div>
+                {{ input_icon(
+                    client_form.direccion,
+                    "Direccion",
+                    icon='<svg width="24px" height="24px" viewBox="0 0 1024 1024"  class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M512 1012.8c-253.6 0-511.2-54.4-511.2-158.4 0-92.8 198.4-131.2 283.2-143.2h3.2c12 0 22.4 8.8 24 20.8 0.8 6.4-0.8 12.8-4.8 17.6-4 4.8-9.6 8.8-16 9.6-176.8 25.6-242.4 72-242.4 96 0 44.8 180.8 110.4 463.2 110.4s463.2-65.6 463.2-110.4c0-24-66.4-70.4-244.8-96-6.4-0.8-12-4-16-9.6-4-4.8-5.6-11.2-4.8-17.6 1.6-12 12-20.8 24-20.8h3.2c85.6 12 285.6 50.4 285.6 143.2 0.8 103.2-256 158.4-509.6 158.4z m-16.8-169.6c-12-11.2-288.8-272.8-288.8-529.6 0-168 136.8-304.8 304.8-304.8S816 145.6 816 313.6c0 249.6-276.8 517.6-288.8 528.8l-16 16-16-15.2zM512 56.8c-141.6 0-256.8 115.2-256.8 256.8 0 200.8 196 416 256.8 477.6 61.6-63.2 257.6-282.4 257.6-477.6C768.8 172.8 653.6 56.8 512 56.8z m0 392.8c-80 0-144.8-64.8-144.8-144.8S432 160 512 160c80 0 144.8 64.8 144.8 144.8 0 80-64.8 144.8-144.8 144.8zM512 208c-53.6 0-96.8 43.2-96.8 96.8S458.4 401.6 512 401.6c53.6 0 96.8-43.2 96.8-96.8S564.8 208 512 208z" fill=""></path></g></svg>'
+                ) }}
+            </div>
+            
+            <div>
+                {{ input_icon(
+                    client_form.telefono,
+                    "Telefono",
+                    icon='<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 10H14.6C14.0399 10 13.7599 10 13.546 9.89101C13.3578 9.79513 13.2049 9.64215 13.109 9.45399C13 9.24008 13 8.96005 13 8.4V5M10 5H17.8C18.9201 5 19.4802 5 19.908 5.21799C20.2843 5.40973 20.5903 5.71569 20.782 6.09202C21 6.51984 21 7.07989 21 8.2V17.8C21 18.9201 21 19.4802 20.782 19.908C20.5903 20.2843 20.2843 20.5903 19.908 20.782C19.4802 21 18.9201 21 17.8 21H6.2C5.07989 21 4.51984 21 4.09202 20.782C3.71569 20.5903 3.40973 20.2843 3.21799 19.908C3 19.4802 3 18.9201 3 17.8V8.2C3 7.07989 3 6.51984 3.21799 6.09202C3.40973 5.71569 3.71569 5.40973 4.09202 5.21799C4.49359 5.01338 5.01165 5.00082 6 5.00005M10 5V4.6C10 4.03995 10 3.75992 9.89101 3.54601C9.79513 3.35785 9.64215 3.20487 9.45399 3.10899C9.24008 3 8.96005 3 8.4 3H7.6C7.03995 3 6.75992 3 6.54601 3.10899C6.35785 3.20487 6.20487 3.35785 6.10899 3.54601C6 3.75992 6 4.03995 6 4.6V5.00005M10 5V15.4C10 15.9601 10 16.2401 9.89101 16.454C9.79513 16.6422 9.64215 16.7951 9.45399 16.891C9.24008 17 8.96005 17 8.4 17H7.6C7.03995 17 6.75992 17 6.54601 16.891C6.35785 16.7951 6.20487 16.6422 6.10899 16.454C6 16.2401 6 15.9601 6 15.4V5.00005M14 14H14.01V13.99H14V14ZM14 17H14.01V17.01H14V17ZM17 17H17.01V17.01H17V17ZM17 14H17.01V14.01H17V14Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>'    
+                ) }}
+            </div>
+        </div>
+        
+        <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500">
+                
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 border-b">
+                    <tr>
+                        <th class="px-6 py-3">Pizza</th>
+                        <th class="px-6 py-3">Tamaño</th>
+                        <th class="px-6 py-3">Ingredientes</th>
+                        <th class="px-6 py-3">Cantidad</th>
+                        <th class="px-6 py-3">Precio</th>
+                        <th class="px-6 py-3">Sub Total</th>
+                        <th class="px-6 py-3">Acción</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% if session.carrito %}
+                        {% for pizza in session.carrito %}
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold text-gray-900 flex items-center gap-2">
+                                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 16L0 15L1.97837 10.9068C2.14083 10.9671 2.31657 11 2.5 11C3.32843 11 4 10.3284 4 9.5C4 8.95653 3.71097 8.48056 3.27824 8.21743L5.37251 3.88446C8.37131 5.21622 10.7838 7.62869 12.1155 10.6275L9.97183 11.6636C9.81188 10.7192 8.98993 10 8 10C6.89543 10 6 10.8954 6 12C6 12.5135 6.19355 12.9819 6.51167 13.336L1 16Z" fill="#000000"></path>
+                                    <path d="M6.24346 2.0825C9.6471 3.61175 12.3883 6.3529 13.9175 9.75654L15.9445 8.77684C14.1934 4.91762 11.0824 1.80661 7.22316 0.0555267L6.24346 2.0825Z" fill="#000000"></path>
+                                </svg>
+
+                                <span>Pizza {{ loop.index }}</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ pizza.tamano }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ pizza.ingredientes | join(', ') }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ pizza.cantidad }}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-green-600">
+                                ${{ pizza.precio }}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-green-600">
+                                ${{ pizza.cantidad * pizza.precio }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <form method="POST" style="display: inline;">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="accion" value="eliminar_pizza" />
+                                    <input type="hidden" name="index" value="{{ loop.index0 }}" />
+                                    <button type="submit" 
+                                            class="font-medium text-red-600 hover:underline bg-transparent border-0 cursor-pointer">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr class="bg-white border-b">
+                            <td colspan="6" class="px-6 py-8 text-center text-gray-500">
+                                No hay pizzas en el carrito
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        
+        {% if session.carrito %}
+        <div class="mt-6 flex justify-end">
+            <button type="button"
+                    onclick="document.getElementById('fechaModal').classList.remove('hidden')"
+                    class="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-green-700 transition-all duration-200">
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Guides"> <g id="_x32_0_px_2_"> </g> <g id="_x32_0px"> </g> <g id="_x34_0px"> </g> <g id="_x34_4_px"> </g> <g id="_x34_8px"> <g id="_x31_6px"> </g> <g id="square_4px"> <g id="_x32_8_px"> <g id="square_4px_2_"> </g> <g id="square_4px_3_"> </g> <g id="square_4px_1_"> </g> <g id="_x32_4_px_2_"> </g> <g id="_x31_2_px"> </g> </g> </g> </g> <g id="Icons"> </g> <g id="_x32_0_px"> </g> <g id="square_6px"> <g id="_x31_2_PX"> </g> </g> <g id="_x33_6_px"> <g id="_x33_2_px"> <g id="_x32_8_px_1_"> <g id="square_6px_1_"> </g> <g id="_x32_0_px_1_"> <g id="_x31_2_PX_2_"> </g> <g id="_x34_8px"> <g id="_x32_4_px"> </g> <g id="_x32_4_px_1_"> </g> </g> </g> </g> </g> </g> <g id="_x32_0_px_3_"> </g> <g id="_x32_0_px_4_"> </g> <g id="New_Symbol_8"> <g id="_x32_4_px_3_"> </g> </g> </g> <g id="Artboard"> </g> <g id="Free_Icons"> <g> <polyline style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="19.5,19 19.5,23.5 4.5,23.5 4.5,7.5 19.5,7.5 19.5,11.5 "></polyline> <polyline style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="4.5,7.5 0.5,2.5 0.5,0.5 23.5,0.5 23.5,2.5 19.5,7.5 "></polyline> <polygon style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="17.5,19 12,22 6.5,19 6.5,12.5 12,9 17.5,12.5 12,15.5 "></polygon> <polygon style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="16.5,15.5 23.5,12.5 23.5,18.5 "></polygon> <polyline style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="6.5,12.5 12,15.5 12,22 "></polyline> <polyline style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="6.5,19 12,15.5 12,9 "></polyline> <line style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="0.5" y1="2.5" x2="23.5" y2="2.5"></line> </g> </g> </g></svg>
+                <span>Finalizar Pedido</span>
+            </button>
+        </div>
+        {% endif %}
+    </form>
+
+    <!-- Modal para ingresar fecha -->
+    <div id="fechaModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Ingresar Fecha del Pedido</h3>
+                <form method="POST" id="fechaForm">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="accion" value="finalizar" />
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Fecha</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <select name="dia" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Día</option>
+                                {% for i in range(1, 32) %}
+                                <option value="{{ i }}" {% if i == now.day %}selected{% endif %}>{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                            
+                            <select name="mes" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Mes</option>
+                                {% for i in range(1, 13) %}
+                                <option value="{{ i }}" {% if i == now.month %}selected{% endif %}>{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                            
+                            <select name="anio" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Año</option>
+                                {% for i in range(2020, 2031) %}
+                                <option value="{{ i }}" {% if i == now.year %}selected{% endif %}>{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end gap-2">
+                        <button type="button"
+                                onclick="document.getElementById('fechaModal').classList.add('hidden')"
+                                class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+                            Cancelar
+                        </button>
+                        <button type="submit"
+                                class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                            Confirmar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
